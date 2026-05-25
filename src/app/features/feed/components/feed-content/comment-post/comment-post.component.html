@@ -1,0 +1,84 @@
+<section class="border border-[#323436] rounded-[16px] p-4 bg-[#202225]" aria-label="Comments">
+  <div class="flex items-center gap-2 mb-2">
+    <h3 class="font-bold text-[15px] text-white">Comments</h3>
+    <span class="bg-[#F62E8E]/20 text-[#F62E8E] text-[12px] font-bold px-2 py-0.5 rounded-full">
+      {{commentList.length}}
+    </span>
+  </div>
+
+  <!-- comment details  -->
+  @for(comment of commentList; track comment._id){
+  <div class="flex gap-2 mb-4 group">
+    <img [src]="comment.commentCreator.photo" [alt]="comment.commentCreator.name"
+      class="w-8 h-8 rounded-full object-cover shrink-0 mt-1 bg-[#181A1C] border border-[#323436]" />
+
+    <div class="flex-1 flex flex-col items-start min-w-0">
+      <div class="bg-[#181A1C] rounded-2xl rounded-tl-none px-3.5 py-2.5 max-w-full">
+        <div class="flex items-center gap-1.5 mb-0.5">
+          <span class="text-[13px] font-bold text-white hover:underline cursor-pointer">
+            {{comment.commentCreator.username}}
+          </span>
+        </div>
+
+        <!-- <div class="flex items-center gap-1 text-[12px] text-gray-400 mb-1">
+          <span>{{comment.commentCreator.username}}</span>
+          <span>&middot;</span>
+          
+        </div> -->
+
+        <p class="text-[14px] text-gray-200 wrap-break-word">
+          {{comment.content}}
+        </p>
+        @if (comment.image) { <img [src]="comment.image" alt="" class="w-full h-[150px] object-cover">
+        }
+      </div>
+
+      <div class="flex items-center gap-3 mt-1 ml-2 text-[12px] text-gray-400 font-semibold">
+        <span class="cursor-pointer hover:text-[#F62E8E]">{{getTimeAgo(comment.createdAt)}}</span>
+        <button class="cursor-pointer hover:text-[#F62E8E]">Like {{comment.likes.length}}</button>
+        <button class="cursor-pointer hover:text-[#F62E8E]">Reply</button>
+        <button
+          class="w-6 h-6 flex items-center justify-center rounded-full hover:bg-[#181A1C] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+          <i class="fa-solid fa-ellipsis"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  }
+
+  <!-- Create Comments  -->
+  <div class="flex gap-2 mt-4">
+    <img src="default-profile.png" alt="user"
+      class="w-8 h-8 rounded-full object-cover shrink-0 mt-1 bg-[#181A1C] border border-[#323436]" />
+
+    <div
+      class="flex-1 bg-[#181A1C] border border-[#323436] focus-within:border-[#F62E8E] focus-within:ring-4 focus-within:ring-[#F62E8E]/10 focus-within:bg-[#202225] transition-all rounded-[20px] p-2 flex flex-col">
+      <textarea
+  [(ngModel)]="newComment"
+  name="comment"
+  class="w-full bg-transparent border-none text-[14px] text-white placeholder-gray-400 resize-none outline-none px-2 pt-1 pb-3 min-h-[60px]"
+  placeholder="Comment as ...">
+</textarea>
+
+      <div class="flex items-center justify-between px-1">
+        <div class="flex items-center gap-1">
+          <input type="file" id="file" class="hidden" />
+          <label for="file"
+            class="flex cursor-pointer items-center gap-2 text-gray-400 hover:bg-[#202225] px-2 py-1.5 rounded-lg transition-colors group">
+            <i class="fa-regular fa-image text-[#F62E8E] text-[1.1rem] group-hover:scale-110 transition-transform"></i>
+            <span class="text-[14px] font-semibold text-gray-300">Photo/video</span>
+          </label>
+        </div>
+
+        <button
+  (click)="createComment()"
+  class="w-8 cursor-pointer h-8 rounded-full bg-[#F62E8E] hover:bg-[#e0267f] text-white flex items-center justify-center transition-colors">
+
+  <i class="fa-solid fa-paper-plane text-[13px] ms-1 mt-.5"></i>
+
+</button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,96 @@
+<main class="max-w-2xl mx-auto mt-5">
+
+
+  @if (isLoading) {
+  <app-loading-skeleton />
+} @else {
+  <!-- POST CARD -->
+  <div class="bg-[#202225] rounded-[16px] shadow-sm border border-[#323436] p-4 font-sans">
+
+    <!-- HEADER -->
+    <div class="flex items-start justify-between mb-3">
+      <div class="flex items-center gap-3">
+        <img 
+          [src]="postDetails.user?.photo" 
+          class="w-12 h-12 rounded-full border border-[#323436]" 
+        />
+
+        <div>
+          <p class="text-white font-semibold text-[15px]">
+            {{ postDetails.user?.name }}
+          </p>
+
+          <div class="flex items-center gap-2 text-xs text-gray-400">
+            <span>@{{ postDetails.user?.username }}</span>
+            <span>&middot;</span>
+            <span>{{ getTimeAgo(postDetails.createdAt) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="text-gray-200 text-[15px] mb-4 break-all">
+      @if (postDetails.body) {
+        <p class="mb-3 leading-relaxed">
+          {{ postDetails.body }}
+        </p>
+      }
+
+      @if (postDetails.image) {
+        <img 
+          [src]="postDetails.image" 
+          class="w-full max-h-[450px] object-cover rounded-xl shadow"
+        />
+      }
+    </div>
+
+    <!-- STATS -->
+    <div class="flex items-center justify-between text-[13px] text-gray-400 mb-3 px-1">
+      <div class="flex items-center gap-1.5">
+        <div class="w-5 h-5 rounded-full bg-[#F62E8E] text-white flex items-center justify-center text-xs">
+          <i class="fa-solid fa-thumbs-up"></i>
+        </div>
+        <span>{{ postDetails.likesCount }}</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span>{{ postDetails.commentsCount }} comments</span>
+        <span>{{ postDetails.sharesCount }} shares</span>
+      </div>
+    </div>
+
+    <hr class="border-t border-[#323436] mb-2" />
+
+    <!-- ACTIONS -->
+    <div class="flex items-center justify-between px-1 py-1">
+      <button
+        class="flex-1 flex items-center justify-center gap-2 text-gray-300 font-semibold text-[14px] hover:bg-[#2D2F31] py-2 rounded-lg transition-colors">
+        <i class="fa-regular fa-thumbs-up text-lg"></i>
+        Like
+      </button>
+
+      <button
+        class="flex-1 flex items-center justify-center gap-2 text-gray-300 font-semibold text-[14px] hover:bg-[#2D2F31] py-2 rounded-lg transition-colors">
+        <i class="fa-regular fa-message text-lg"></i>
+        Comment
+      </button>
+
+      <button
+        class="flex-1 flex items-center justify-center gap-2 text-gray-300 font-semibold text-[14px] hover:bg-[#2D2F31] py-2 rounded-lg transition-colors">
+        <i class="fa-solid fa-share text-lg"></i>
+        Share
+      </button>
+    </div>
+
+  </div>
+
+  <!-- COMMENTS SECTION -->
+  <div class="mt-4">
+@if (postDetails._id) {
+  <app-comment-post [postId]="postDetails._id"></app-comment-post>
+}  </div>
+  
+}
+
+</main>

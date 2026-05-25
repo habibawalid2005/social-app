@@ -1,0 +1,17 @@
+<div class="relative mb-4">
+
+  <div class="absolute inset-y-0 inset-s-0 flex items-center ps-3.5 pointer-events-none">
+
+    <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+
+  </div>
+
+  <input
+    (input)="getSearchSuggestionsData($event)"
+    type="text"
+    class="bg-[#181A1C] border border-[#323436] text-gray-300 text-sm rounded-xl focus:border-[#F62E8E] block w-full ps-10 p-2.5 placeholder-gray-500 outline-none transition-all"
+    placeholder="Search friends..."
+    aria-label="Search friends"
+  />
+
+</div>

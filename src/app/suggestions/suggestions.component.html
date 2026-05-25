@@ -1,0 +1,114 @@
+<div class="mx-auto max-w-7xl px-3 py-3.5">
+
+  <main class="min-w-0">
+
+    <div class="mx-auto max-w-4xl space-y-4">
+
+
+      <!-- back -->
+      <button
+        routerLink="/feed"
+        class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-[#323436] bg-[#202225] px-3 py-2 text-sm font-bold text-gray-300 transition hover:bg-[#2D2F31]"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+        Back to feed
+      </button>
+
+
+      <!-- card -->
+      <section class="rounded-2xl border border-[#323436] bg-[#202225] p-4 shadow-sm">
+
+        <!-- header -->
+        <div class="mb-3 flex items-center justify-between gap-2">
+
+          <div class="flex items-center gap-2">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-[#F62E8E]"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+            </svg>
+
+            <h1 class="text-xl font-extrabold text-white">
+              {{userId?'':'All Suggested '}}Friends
+            </h1>
+
+          </div>
+
+          <span class="rounded-full bg-[#181A1C] px-2 py-0.5 text-xs font-bold text-gray-300">
+            {{SuggestionList?SuggestionList.length:0}}
+          </span>
+
+        </div>
+
+
+        <!-- search -->
+        @if (userId) {
+          <app-search-friends-input (suggestedList)="searchfriends=$event"></app-search-friends-input>
+        } @else {
+          <app-search-friends-input (suggestedList)="getFollowSuggestionsByPageData($event)"></app-search-friends-input>
+        }
+
+
+        <!-- list -->
+        <div class="grid gap-3 sm:grid-cols-2">
+
+          @if (loading) {
+
+            @for (item of [1,2,3,4,5,6,7,8]; track $index) {
+              <app-loading [loadingType]="'suggested user'"></app-loading>
+            }
+
+          } @else {
+
+            @for (user of userId?(SuggestionList|searchUser:searchfriends):SuggestionList; track user._id) {
+
+              <app-sugested-user
+                [friend]="userId? true:false"
+                class="block min-w-0"
+                (functionCall)="callBackforFollowUser($event)"
+                [user]="user">
+              </app-sugested-user>
+
+            } @empty {
+
+              <p class="text-sm text-gray-400">
+                No users matched your search.
+              </p>
+
+            }
+
+          }
+
+        </div>
+
+
+        <!-- load more -->
+        @if (SuggestionList && !userId) {
+
+          <button
+            (click)="getFollowSuggestionsByPageData(inputValue)"
+            class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#323436] bg-[#181A1C] px-3 py-2 text-sm font-bold text-gray-300 transition hover:bg-[#2D2F31] disabled:opacity-60"
+          >
+            Load more users
+          </button>
+
+        }
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>

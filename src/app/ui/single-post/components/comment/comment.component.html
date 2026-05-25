@@ -1,0 +1,59 @@
+@if (showCommentsFlag) {
+  <div class="border-t border-slate-200 bg-[#f7f8fa] px-4 py-4">
+    <div
+      class="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2"
+    >
+      <div class="flex items-center gap-2">
+        <p class="text-sm font-extrabold tracking-wide text-slate-700">Comments</p>
+        <span class="rounded-full bg-[#e7f3ff] px-2 py-0.5 text-[11px] font-bold text-[#1877f2]">{{
+          commentsList.length
+        }}</span>
+      </div>
+      <select (change)="sortComments($event)"
+        class="rounded-sm cursor-pointer border border-slate-200 bg-slate-50 ps-2.5 pe-6 py-1.5 text-xs font-bold text-slate-700 outline-none ring-[#1877f2]/20 focus:border-[#1877f2] focus:bg-white focus:ring-2"
+      >
+        <option value="relevant">Most relevant</option>
+        <option value="newest">Newest</option>
+      </select>
+    </div>
+   
+      <div class="grid gap-2">
+         @if (isLoading) {
+      <app-loading [loadingType]="'suggested user'"></app-loading>
+      <app-loading [loadingType]="'suggested user'"></app-loading>
+      <app-loading [loadingType]="'suggested user'"></app-loading>
+    }@else {
+        @for (comment of commentsList; track comment._id) {
+        <!-- User Data -->
+        } @empty {
+      <div class="rounded-2xl border border-slate-200 bg-white px-4 py-8 text-center">
+        <div
+          class="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#eef3ff] text-[#1877f2]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-message-circle"
+            aria-hidden="true"
+          >
+            <path
+              d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"
+            ></path>
+          </svg>
+        </div>
+        <p class="text-lg font-extrabold text-slate-800">No comments yet</p>
+        <p class="mt-1 text-sm font-medium text-slate-500">Be the first to comment.</p>
+      </div>
+    }
+    }  
+      </div>
+      <app-create-comment-section  (callParentFunction)="GetPostCommentsData()" [postId]="postId" [type]="'comment'"></app-create-comment-section>
+  </div>
+}

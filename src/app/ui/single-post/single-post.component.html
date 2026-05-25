@@ -1,0 +1,122 @@
+<div class="bg-[#202225] rounded-2xl my-3 shadow border border-[#323436] p-4 font-sans">
+
+  <!-- user -->
+  <div class="flex items-start justify-between mb-3">
+
+    <div class="flex items-center gap-3">
+
+      <img
+        [routerLink]="['/profile',post.user._id]"
+        [src]="post.user.photo"
+        class="size-10 rounded-full cursor-pointer object-cover border border-[#323436] hover:scale-105 transition"
+      />
+
+      <div>
+
+        <span
+          [routerLink]="['/profile',post.user._id]"
+          class="text-[15px] font-bold text-white hover:underline cursor-pointer"
+        >
+          {{ post.user.name }}
+        </span>
+
+        <div class="flex items-center text-[13px] text-gray-400 gap-1 flex-wrap">
+
+          <span>@{{ post.user.username }}</span>
+
+          <span>&middot;</span>
+
+          <span>{{ post.createdAt | timeAgo | async }}</span>
+
+          <span>&middot;</span>
+
+          <div class="bg-[#181A1C] border border-[#323436] rounded px-2 py-0.5 text-[11px] text-gray-300 capitalize">
+            {{ post.privacy }}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- content -->
+  <div class="text-[15px] text-gray-200 mb-4 leading-relaxed">
+
+    @if (post.body) {
+      <p class="break-words">{{ post.body }}</p>
+    }
+
+    @if (post.image) {
+      <img
+        [src]="post.image"
+        class="w-full cursor-zoom-in max-h-96 object-cover rounded-xl mt-3 hover:opacity-95 transition"
+      />
+    }
+
+  </div>
+
+
+  <!-- stats -->
+  <div class="flex items-center justify-between text-[13px] text-gray-400 mb-3 px-1">
+
+    <div class="flex items-center gap-1.5">
+
+      <div class="w-5 h-5 rounded-full bg-gradient-to-r from-[#F62E8E] to-[#AC1AF0] text-white flex items-center justify-center text-[10px]">
+        👍
+      </div>
+
+      <span>{{ post.likesCount }}</span>
+
+    </div>
+
+    <div class="flex items-center gap-3">
+
+      <span class="hover:underline cursor-pointer">
+        {{ post.sharesCount }} shares
+      </span>
+
+      <span class="hover:underline cursor-pointer">
+        {{ post.commentsCount }} comments
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <hr class="border-[#323436] mb-2" />
+
+
+  <!-- actions -->
+  <div class="flex items-center justify-between text-sm font-medium">
+
+    <button
+      (click)="likePost(post)"
+      [class]="post.likes.includes(loginedUserId)
+        ? 'text-[#F62E8E]'
+        : 'text-gray-400 hover:bg-[#2D2F31]'"
+      class="flex-1 py-2 rounded-lg flex justify-center items-center gap-2 transition cursor-pointer"
+    >
+      👍 Like
+    </button>
+
+    <button
+      (click)="updateshowcommentsFlag()"
+      class="flex-1 py-2 rounded-lg flex justify-center items-center gap-2 text-gray-400 hover:bg-[#2D2F31] transition cursor-pointer"
+    >
+      💬 Comment
+    </button>
+
+    <button
+      class="flex-1 py-2 rounded-lg flex justify-center items-center gap-2 text-gray-400 hover:bg-[#2D2F31] transition cursor-pointer"
+    >
+      🔁 Share
+    </button>
+
+  </div>
+
+</div>

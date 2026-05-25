@@ -1,0 +1,102 @@
+<nav class=" fixed top-0 left-0 w-full z-50 bg-[#202225] border-b border-[#323436]">
+
+  <div class="max-w-8xl mx-auto flex items-center justify-between px-6 py-3">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+
+      <img src="logo.png" class="w-15">
+
+      <span class="hidden md:block text-xl font-bold bg-gradient-to-r from-[#F62E8E] to-[#AC1AF0] bg-clip-text text-transparent">
+        DevConnect
+      </span>
+
+    </div>
+
+    <!-- Navigation Desktop -->
+    <div class="hidden md:flex items-center gap-8 text-gray-400">
+
+      <a routerLink="/feed"
+        routerLinkActive="text-[#F62E8E] bg-[#2D2F31]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="hover:text-white hover:bg-[#2D2F31] px-3 py-1.5 rounded-lg transition">
+        <i class="fa-solid fa-house"></i> Feed
+      </a>
+
+      <a routerLink="/profile"
+            routerLinkActive="text-[#F62E8E] bg-[#2D2F31]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="hover:text-white hover:bg-[#2D2F31] px-3 py-1.5 rounded-lg transition">
+        <i class="fa-solid fa-user"></i> Profile
+      </a>
+
+      <a routerLink="/notification"
+           routerLinkActive="text-[#F62E8E] bg-[#2D2F31]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="hover:text-white hover:bg-[#2D2F31] px-3 py-1.5 rounded-lg transition">
+        <i class="fa-solid fa-bell"></i> Notifications
+      </a>
+
+    </div>
+
+    <!-- Mobile Icons -->
+    <div class="flex md:hidden items-center gap-8 text-gray-400 text-lg">
+
+      <a routerLink="/feed"
+         routerLinkActive="text-[#F62E8E]">
+         <i class="fa-solid fa-house"></i>
+      </a>
+
+      <a routerLink="/profile"
+         routerLinkActive="text-[#F62E8E]">
+         <i class="fa-solid fa-user"></i>
+      </a>
+
+      <a routerLink="/notification"
+         routerLinkActive="text-[#F62E8E]">
+         <i class="fa-solid fa-bell"></i>
+      </a>
+
+    </div>
+
+    <!-- User -->
+    <div class="relative">
+
+      <button
+      (click)="toggleMenu()"
+      class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition ">
+
+        <img
+        src="default-profile.png"
+        class="w-9 h-9 rounded-full border border-[#323436]">
+
+      </button>
+
+      <!-- Dropdown -->
+      <div
+      *ngIf="isMenuOpen"
+      class="absolute right-0 mt-3 w-44 bg-[#232527] border border-[#323436] rounded-xl shadow-lg">
+
+        <a routerLink="/profile"
+        class="block px-4 py-2 text-sm text-gray-300 hover:bg-[#2D2F31] rounded">
+        Profile
+        </a>
+
+        <a routerLink="/change"
+        class="block px-4 py-2 text-sm text-gray-300 hover:bg-[#2D2F31] rounded">
+        Change Password
+        </a>
+
+        <button
+        (click)="logOut()"
+        class="w-full text-left px-4 cursor-pointer py-2 text-sm text-red-400 hover:bg-[#2D2F31] rounded">
+        Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</nav>

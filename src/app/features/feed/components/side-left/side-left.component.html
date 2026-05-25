@@ -1,0 +1,44 @@
+<aside class="hidden lg:flex flex-col gap-2 sticky top-24 h-fit bg-[#202225] border border-[#323436] rounded-2xl p-3"
+>
+
+<button
+    [routerLink]="[]" [queryParams]="{tab:'feed'}"
+    [class]="activeBtn === 'feed' 
+  ? 'bg-[#F62E8E]/10 text-[#F62E8E]' 
+  : 'text-gray-400 hover:bg-[#2D2F31] hover:text-white group'"
+    class="flex items-center gap-3 p-3 rounded-xl bg-[#2D2F31] text-[#F62E8E] font-normal cursor-pointer">
+<i class="fa-solid fa-house"></i>
+Feed
+</button>
+
+<button
+    [routerLink]="[]" [queryParams]="{tab:'myPosts'}" 
+    [class]="activeBtn === 'myPosts' 
+  ? 'bg-[#F62E8E]/10 text-[#F62E8E]' 
+  : 'text-gray-400 hover:bg-[#2D2F31] hover:text-white group'"
+    class="flex items-center gap-3 p-3 rounded-xl text-gray-300 hover:bg-[#2D2F31] font-normal cursor-pointer">
+<i class="fa-solid fa-pen"></i>
+My Posts
+</button>
+
+<button 
+    [routerLink]="[]" [queryParams]="{tab:'community'}"
+[class]="activeBtn === 'community' 
+  ? 'bg-[#F62E8E]/10 text-[#F62E8E]' 
+  : 'text-gray-400 hover:bg-[#2D2F31] hover:text-white group'"
+class="flex items-center gap-3 p-3 rounded-xl text-gray-300 hover:bg-[#2D2F31] font-normal cursor-pointer">
+<i class="fa-solid fa-globe"></i>
+Community
+</button>
+
+<button 
+[routerLink]="[]" [queryParams]="{tab:'saved'}"
+[class]="activeBtn === 'saved' 
+  ? 'bg-[#F62E8E]/10 text-[#F62E8E]' 
+  : 'text-gray-400 hover:bg-[#2D2F31] hover:text-white group'"
+class="flex items-center gap-3 p-3 rounded-xl text-gray-300 hover:bg-[#2D2F31] font-normal cursor-pointer">
+<i class="fa-regular fa-bookmark"></i>
+Saved
+</button>
+
+</aside>

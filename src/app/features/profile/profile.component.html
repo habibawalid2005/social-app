@@ -1,0 +1,182 @@
+<div class="mx-auto max-w-8xl px-3 py-4">
+
+  <main class="min-w-0">
+
+    <div class="space-y-6">
+
+      @if (profile) {
+
+        <section class="overflow-hidden rounded-[28px] border border-[#323436] bg-[#202225] shadow-xl">
+
+          <!-- COVER -->
+          <div class="relative h-52 bg-gradient-
+          
+          -r from-[#F62E8E]/20 to-[#AC1AF0]/20">
+
+            @if (profile && myId===profile._id) {
+
+              <div class="absolute right-3 top-3 flex gap-2">
+
+                <label class="cursor-pointer bg-black/50 text-white px-3 py-1 rounded-lg text-xs hover:bg-black/70 transition">
+                  Change cover
+                  <input (change)="readImg($event, 'cover')" hidden type="file">
+                </label>
+
+                @if (profile.cover) {
+                  <button
+                    (click)="removeCover()"
+                    class="bg-red-500/80 text-white px-3 py-1 rounded-lg text-xs hover:bg-red-600 transition">
+                    Remove
+                  </button>
+                }
+
+              </div>
+
+            }
+
+          </div>
+
+          <!-- CONTENT -->
+          <div class="relative -mt-16 px-4 pb-6">
+
+            <div class="rounded-[24px] border border-[#323436] bg-[#202225] p-6 shadow-lg">
+
+              <!-- HEADER -->
+              <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+
+                <div class="flex items-center gap-4">
+
+                  <!-- IMAGE -->
+                  <div class="relative">
+
+                    <img
+                      [src]="profileUrl || profile.photo"
+                      class="h-28 w-28 rounded-full border-4 border-[#202225] ring-4 ring-[#323436] object-cover shadow-lg hover:scale-105 transition"
+                    />
+
+                    @if (profile && myId===profile._id) {
+                      <label class="absolute bottom-1 right-1 bg-[#F62E8E] text-white p-2 rounded-full cursor-pointer shadow hover:bg-[#e91e82] transition">
+                        <input hidden type="file" (change)="readImg($event,'photo')">
+                        📷
+                      </label>
+                    }
+
+                  </div>
+
+                  <!-- INFO -->
+                  <div>
+
+                    <h2 class="text-3xl font-black text-white">
+                      {{ profile.name }}
+                    </h2>
+
+                    <p class="text-gray-400 font-semibold">
+                      @{{ profile.username }}
+                    </p>
+
+                  </div>
+
+                </div>
+
+                <!-- FOLLOW -->
+                @if (profile && myId!==profile._id) {
+
+                  <button
+                    (click)="followUnfollowUserItem(profile._id)"
+                    class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#F62E8E] to-[#AC1AF0] text-white font-bold shadow-lg hover:scale-105 transition"
+                  >
+
+                    @if (isFollowing) {Following} @else {Follow}
+
+                  </button>
+
+                }
+
+              </div>
+
+
+              <!-- STATS -->
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+
+                <div class="bg-[#181A1C] border border-[#323436] p-4 rounded-xl text-center hover:scale-105 transition">
+                  <p class="text-xl font-bold text-white">{{ profile.followersCount }}</p>
+                  <span class="text-xs text-gray-400">Followers</span>
+                </div>
+
+                <div class="bg-[#181A1C] border border-[#323436] p-4 rounded-xl text-center hover:scale-105 transition">
+                  <p class="text-xl font-bold text-white">{{ profile.followingCount }}</p>
+                  <span class="text-xs text-gray-400">Following</span>
+                </div>
+
+                <div class="bg-[#181A1C] border border-[#323436] p-4 rounded-xl text-center hover:scale-105 transition">
+                  <p class="text-xl font-bold text-white">{{ postsCount }}</p>
+                  <span class="text-xs text-gray-400">Posts</span>
+                </div>
+
+                @if (profile && profile._id===myId) {
+                  <div class="bg-[#181A1C] border border-[#323436] p-4 rounded-xl text-center hover:scale-105 transition">
+                    <p class="text-xl font-bold text-white">{{ profile.bookmarksCount }}</p>
+                    <span class="text-xs text-gray-400">Saved</span>
+                  </div>
+                }
+
+              </div>
+
+
+              <!-- ABOUT -->
+              <div class="mt-8 bg-[#181A1C] border border-[#323436] p-5 rounded-xl">
+
+                <h3 class="text-white font-bold mb-3">About</h3>
+
+                <div class="space-y-2 text-sm text-gray-300">
+
+                  <p>📧 {{ profile.email }}</p>
+                  <p>👤 {{ profile.gender }}</p>
+                  <p>📅 {{ profile.createdAt | date }}</p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      }
+
+
+      <!-- POSTS -->
+      <div class="space-y-4">
+
+        @if (postsLoading) {
+
+          <app-loading-skeleton [loadingType]="'posts'"></app-loading-skeleton>
+
+        } @else {
+
+          @for (post of PostsList; track post._id) {
+
+            <app-single-post
+              [post]="post"
+              (callParentFunction)="callBackfunction()">
+            </app-single-post>
+
+          } @empty {
+
+            <p class="text-center text-gray-400 bg-[#181A1C] p-4 rounded-xl border border-[#323436]">
+              No posts yet
+            </p>
+
+          }
+
+        }
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

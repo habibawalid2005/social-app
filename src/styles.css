@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+
+@utility container{
+    margin-inline:auto;
+}
+
+@theme{
+    --primary-gradient: linear-gradient(135deg, #F62E8E, #AC1AF0);
+    /* Brand Colors */
+        --gradient-start: #F62E8E;
+        --gradient-end: #AC1AF0;
+    
+        --social-pink: #F62E8E;
+        --social-blue: #2E8AF6;
+    
+        /* Dark Mode */
+        --dark-black: #181A1C;
+        --black: #000000;
+    
+        /* Light Mode */
+        --light-white: #ECEBED;
+        --white: #FFFFFF;
+    
+        /* Grays */
+        --gray: #323436;
+        --light-gray: #727477; 
+}
+body{
+    background-color: var(--dark-black);
+    color: var(--white);
+    font-family: "Science Gothic", sans-serif; 
+}
