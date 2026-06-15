@@ -1,59 +1,119 @@
-# Social
+<div align="center">
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.14.
+# 📱 Social App
 
-## Development server
+### A Modern Social Media Platform Built With Angular
 
-To start a local development server, run:
+<img src="https://skillicons.dev/icons?i=angular,typescript,javascript,html,css,bootstrap"/>
+
+</div>
+
+---
+
+## 📌 Overview
+
+Social App is a modern social media web application built using Angular.
+
+The application provides a complete user experience including authentication, profiles, posts, comments, search functionality, and route protection.
+
+---
+
+## ✨ Features
+
+- 🔐 User Authentication (Login & Register)
+- 🪪 JWT Authentication
+- 🏠 Home Feed
+- 👤 User Profiles
+- 📝 Create & Manage Posts
+- 💬 Comments System
+- 🔍 Search Functionality
+- 🛡️ Route Guards
+- 🔄 API Integration
+- 📱 Responsive Design
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=html,css,bootstrap,javascript,typescript,angular"/>
+
+</div>
+
+---
+
+## 📂 Project Structure
+
+```text
+src
+│
+├── app
+│   ├── components
+│   ├── pages
+│   ├── services
+│   ├── guards
+│   ├── interfaces
+│   └── shared
+│
+├── assets
+└── environments
+```
+
+---
+
+## ⚙️ Installation
 
 ```bash
+git clone https://github.com/habibawalid2005/social-app.git
+
+cd social-app
+
+npm install
+
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Run the application:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🧠 Concepts Applied
 
-## Building
+- Component-Based Architecture
+- Routing
+- Lazy Loading
+- Services
+- Dependency Injection
+- HTTP Client
+- JWT Authentication
+- Route Guards
+- Reactive Forms
+- API Consumption
+- State Management Basics
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🔗 Connect With Me
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+<div align="center">
 
-## Running unit tests
+<a href="https://www.linkedin.com/in/habiba-walid-0ab2b2348">
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+<img src="https://img.shields.io/badge/LinkedIn-6D28D9?style=for-the-badge&logo=linkedin&logoColor=white"/>
 
-```bash
-ng test
-```
+</a>
 
-## Running end-to-end tests
+</div>
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+<div align="center">
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+⭐ If you like this project, don't forget to give it a star.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+</div>
